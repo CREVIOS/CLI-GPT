@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "NODE_NO_DEPRECATED=punycode node server.js"
+    "start": "NODE_NO_DEPRECATED=punycode node server.js",
+    "test": "jest"
   },
   "author": "@sif",
   "license": "ISC",
@@ -19,5 +20,8 @@
   },
   "bin": {
     "cli_gpt": "./server.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
