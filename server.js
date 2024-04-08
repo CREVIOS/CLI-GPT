@@ -19,13 +19,12 @@ const initializeOpenAI = () => {
   return new OpenAI({ apiKey });
 };
 
-let currentContext = 'mainMenu'; // Initialize current context to main menu
+let currentContext = 'mainMenu'; 
 
-// Display a header
 console.log(chalk.blue('CLI GPT Tool'));
 console.log(chalk.yellow('A simple CLI for interacting with OpenAI\'s GPT models.\n'));
 
-const conversationHistory = []; // Initialize conversation history array
+const conversationHistory = []; 
 
 const mainMenu = async () => {
   currentContext = 'mainMenu'; // Update current context
@@ -72,7 +71,6 @@ const askPrompt = async () => {
   
     const openai = initializeOpenAI();
     try {
-      // Add user message to conversation history
       conversationHistory.push({ role: 'user', content: prompt });
   
       const completion = await openai.chat.completions.create({
@@ -81,7 +79,6 @@ const askPrompt = async () => {
       });
       console.log(chalk.magenta(completion.choices[0].message.content.trim()));
   
-      // Add AI response to conversation history with the role 'assistant'
       conversationHistory.push({ role: 'assistant', content: completion.choices[0].message.content.trim() });
   
       const { askAgain } = await inquirer.prompt({
