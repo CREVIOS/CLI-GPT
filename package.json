@@ -19,7 +19,7 @@
     "openai": "^4.33.0"
   },
   "bin": {
-    "cli_gpt": "./server.js"
+    "ask_gpt": "./server.js"
   },
   "devDependencies": {
     "jest": "^29.7.0"
