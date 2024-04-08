@@ -1,5 +1,5 @@
 {
-  "name": "cli_gpt",
+  "name": "@crevious/cli_gpt",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
