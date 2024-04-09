@@ -27,7 +27,7 @@ console.log(chalk.yellow('A simple CLI for interacting with OpenAI\'s GPT models
 const conversationHistory = []; 
 
 const mainMenu = async () => {
-  currentContext = 'mainMenu'; // Update current context
+  currentContext = 'mainMenu'; 
   const action = await inquirer.prompt([{
     type: 'list',
     name: 'action',
@@ -62,7 +62,7 @@ const mainMenu = async () => {
 };
 
 const askPrompt = async () => {
-    currentContext = 'askPrompt'; // Update current context
+    currentContext = 'askPrompt'; 
     const { prompt } = await inquirer.prompt({
       type: 'input',
       name: 'prompt',
@@ -75,7 +75,7 @@ const askPrompt = async () => {
   
       const completion = await openai.chat.completions.create({
         model: "gpt-4-0125-preview",
-        messages: conversationHistory, // Send conversation history along with the prompt
+        messages: conversationHistory, 
       });
       console.log(chalk.magenta(completion.choices[0].message.content.trim()));
   
@@ -89,9 +89,9 @@ const askPrompt = async () => {
       });
   
       if (askAgain) {
-        await askPrompt(); // Call askPrompt recursively if the user wants to ask another prompt
+        await askPrompt(); 
       } else {
-        await mainMenu(); // Otherwise, go back to the main menu
+        await mainMenu(); 
       }
     } catch (error) {
       console.error(chalk.red('Error calling the GPT API:', error));
@@ -100,7 +100,7 @@ const askPrompt = async () => {
   
 
 const setApiKey = async () => {
-  currentContext = 'setApiKey'; // Update current context
+  currentContext = 'setApiKey'; 
   const { apiKey } = await inquirer.prompt({
     type: 'input',
     name: 'apiKey',
@@ -109,28 +109,28 @@ const setApiKey = async () => {
 
   config.set('OPENAI_API_KEY', apiKey);
   console.log(chalk.green('OpenAI API key set successfully.'));
-  await mainMenu(); // Go back to the main menu
+  await mainMenu(); 
 };
 
 const viewApiKey = () => {
-  currentContext = 'viewApiKey'; // Update current context
+  currentContext = 'viewApiKey'; 
   const apiKey = config.get('OPENAI_API_KEY');
   if (apiKey) {
     console.log(chalk.green(`Current API Key: ${apiKey}`));
   } else {
     console.log(chalk.red('No API Key is set.'));
   }
-    mainMenu(); // Go back to the main menu
+    mainMenu(); 
 };
 
 const clearApiKey = () => {
-  currentContext = 'clearApiKey'; // Update current context
+  currentContext = 'clearApiKey'; 
   config.delete('OPENAI_API_KEY');
   console.log(chalk.green('API Key cleared.'));
-   mainMenu(); // Go back to the main menu
+   mainMenu(); 
 };
 
-// Remove commander usage for a more interactive experience
+
 figlet('CLI GPT Tool', (err, data) => {
   if (err) {
     console.log('Something went wrong with figlet...');
@@ -140,6 +140,6 @@ figlet('CLI GPT Tool', (err, data) => {
   console.log(chalk.blue(data));
   console.log(chalk.yellow('Interact with OpenAI GPT models directly from your terminal.\n'));
 
-  // Continue with the rest of your CLI setup here, like calling mainMenu()
+ 
   mainMenu();
 });
